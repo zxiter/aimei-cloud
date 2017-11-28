@@ -1,0 +1,6 @@
+server:
+  port: 9000
+mybatis:
+   mapper-locations: classpath:mybatis/*.xml
+   type-aliases-package: com.union.aimei.order.entity
+

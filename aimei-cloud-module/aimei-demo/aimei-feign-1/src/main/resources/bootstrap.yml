@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: microservice-feign
+  cloud:
+      config:
+        profile: dev
+        label: master
+        discovery:
+          enabled: true                                 # 默认false，设为true表示使用注册中心中的configserver配置而不自己配置configserver的uri
+          serviceId: microservice-config-server-eureka  # 指定config server在服务发现中的serviceId，默认为：configserver
+  rabbitmq:
+#      host: 112.74.174.194
+      host: 127.0.0.1
+      port: 5672
+      username: guest
+      password: guest
+#  zipkin:
+#      base-url: http://localhost:8008
+  sleuth:
+      sampler:
+        percentage: 1.0
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8000/eureka/
+  instance:
+    hostname: feign                 # 此处，preferIpAddress不设置或者设为false，不能设为true，否则影响turbine的测试。turbine存在的问题：eureka.instance.hostname一致时只能检测到一个节点，会造成turbine数据不完整
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true
+management:
+  security:
+    enabled: false
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.sleuth: DEBUG

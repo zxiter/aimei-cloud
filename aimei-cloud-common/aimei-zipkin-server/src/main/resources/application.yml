@@ -1,0 +1,22 @@
+server:
+  port: 8008
+spring:
+  rabbitmq:
+#    host: 112.74.174.194
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+zipkin:
+  storage:
+    type: elasticsearch
+    elasticsearch:
+      cluster: elasticsearch
+      hosts: http://112.74.174.194:9200
+      index: zipkin
+      index-shards: 5
+      index-replicas: 1
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.sleuth: DEBUG

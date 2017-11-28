@@ -1,0 +1,31 @@
+server:
+    port: 8090
+eureka:
+    client:
+       serviceUrl:
+         defaultZone: http://localhost:8000/eureka/
+spring:
+   application:
+     name: order-feign
+#声明Feign的 hystrix支持,如果设置为true，则断路器备用方法将不起作用，默认为false
+feign:
+     hystrix:
+         enabled: true
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 60000
+
+swagger:
+  enabled: true
+  title: 美容邦订单微服务
+  description: 订单微服务在线API文档
+  version: 1.0
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  base-package: com.union.aimei.order
+  base-path: /**
+  exclude-path: /error,/audit-events-mvc-endpoint

@@ -1,0 +1,33 @@
+server:
+  port: 8006
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://123.207.5.13:8888/liufeihua/aimei-cloud-config.git
+          search-paths: config-repo/*
+          username: gaowei
+          password: gaowei123
+          clone-on-start: true
+          force-pull: true
+#  rabbitmq:
+#        host: 112.74.174.194
+#        port: 5672
+#        username: guest
+#        password: guest
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+  instance:
+      #eureka.instance.preferIpAddress 参数设为 true 时，客户端在注册时就会使用自己的 ip 地址而不是主机名。（应在服务端
+      #设置）
+      prefer-ip-address: true
+      # lease-expiration-duration-in-seconds: 15 # 发呆时间，即服务续约到期时间（缺省为 90s）
+      lease-expiration-duration-in-seconds: 15
+      # lease-renewal-interval-in-seconds: 5 # 心跳时间，即服务续约间隔时间（缺省为 30s）
+      lease-renewal-interval-in-seconds: 5
+management:
+  security:
+    enabled: false
